@@ -1,8 +1,7 @@
+#!/usr/bin/env python3
 from flask import Flask, render_template, request
 import json
 import os.path
-
-data = ["Mark", "John"]
 
 app = Flask(__name__)
 
@@ -10,7 +9,8 @@ app = Flask(__name__)
 @app.route("/name/create", methods=["POST"])
 def name_create():
     name = request.form["create"]
-    data.append(name)
+    with open("data.db", "a") as f:
+        f.write(f"{name}\n")
     vals = json.dumps({"delete": name})
     response = f"""
     <tr>
@@ -26,7 +26,12 @@ def name_create():
 def name_delete():
     name = request.form["delete"]
     print(f"{name} removed")
-    data.remove(name)
+    with open("data.db", "r") as f:
+        lines = f.readlines()
+    with open("data.db", "w") as f:
+        for line in lines:
+            if line.strip("\n") != name:
+                f.write(line)
     return ""
 
 
@@ -41,4 +46,15 @@ def name_order():
 
 @app.route("/")
 def index():
+    with open("data.db", "r") as f:
+        data = [l.strip() for l in f.readlines()]
+    print("index:")
+    print(data)
+    print(json.dumps(data))
     return render_template("index.html", items=data)
+
+if __name__ == "__main__":
+    if not os.path.exists("data.db"):
+        with open("data.db", "w") as f:
+            f.write("John\nJane\nDoe\n")
+    app.run(debug=True, host="0.0.0.0", port=5000)
