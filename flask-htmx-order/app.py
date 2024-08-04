@@ -8,7 +8,7 @@ import os.path
 app = Flask(__name__)
 
 logger = logging.getLogger('werkzeug')
-handler = logging.FileHandler('test.log')
+handler = logging.FileHandler('access.log')
 logger.addHandler(handler)
 stream = logging.StreamHandler(sys.stdout)
 logger.addHandler(stream)
