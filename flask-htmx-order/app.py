@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
 from flask import Flask, render_template, request
 import json
+import logging
+import sys
 import os.path
 
 app = Flask(__name__)
 
+logger = logging.getLogger('werkzeug')
+handler = logging.FileHandler('test.log')
+logger.addHandler(handler)
+stream = logging.StreamHandler(sys.stdout)
+logger.addHandler(stream)
 
 @app.route("/name/create", methods=["POST"])
 def name_create():
