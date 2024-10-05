@@ -13,7 +13,7 @@ logger.addHandler(handler)
 stream = logging.StreamHandler(sys.stdout)
 logger.addHandler(stream)
 
-@app.route("/name/create", methods=["POST"])
+@app.route("/flask/name/create", methods=["POST"])
 def name_create():
     name = request.form["create"]
     with open("data.db", "a") as f:
@@ -29,7 +29,7 @@ def name_create():
     return response
 
 
-@app.route("/name/delete", methods=["POST"])
+@app.route("/flask/name/delete", methods=["POST"])
 def name_delete():
     name = request.form["delete"]
     print(f"{name} removed")
@@ -42,7 +42,7 @@ def name_delete():
     return ""
 
 
-@app.route("/name/order", methods=["POST"])
+@app.route("/flask/name/order", methods=["POST"])
 def name_order():
     global data
     order = request.form.keys()
@@ -51,7 +51,7 @@ def name_order():
     return f"Stages reordered - "
 
 
-@app.route("/")
+@app.route("/flask")
 def index():
     with open("data.db", "r") as f:
         data = [l.strip() for l in f.readlines()]
