@@ -22,7 +22,7 @@ def name_create():
     response = f"""
     <tr>
         <td><input readonly type="text" name='{name}' value='{name}'></td>
-        <td><span id='clickableAwesomeFont'><i class='fas fa-trash fa-lg' name='{{name}}' hx-post='/name/delete' hx-vals='{vals}' hx-target='closest tr' hx-swap='outerHTML swap:0.5s'></i></span></td>
+        <td><span id='clickableAwesomeFont'><i class='fas fa-trash fa-lg' name='{{name}}' hx-post='/flask/name/delete' hx-vals='{vals}' hx-target='closest tr' hx-swap='outerHTML swap:0.5s'></i></span></td>
         <td><i class='fas fa-ellipsis-v'></i></td>
     </tr>
     """
