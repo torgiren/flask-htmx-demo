@@ -31,13 +31,13 @@
                   <th></th>
                 </tr>
               </thead>
-              <tbody class="sortable" hx-post="/name/order" hx-include="tr" hx-trigger="end" hx-swap="none" >
+              <tbody class="sortable" hx-post="/flask/name/order" hx-include="tr" hx-trigger="end" hx-swap="none" >
                   {%for i in items%}
                   <for
                   m>
                   <tr>
                       <td><input readonly type="text" name={{i}} value={{i}}></td>
-                      <td><span id='clickableAwesomeFont'><i class='fas fa-trash fa-lg' name='{{i}}' hx-post='/name/delete' hx-vals='{"delete": "{{i}}"}' hx-target='closest tr' hx-swap='outerHTML swap:1s'></i></span></td>
+                      <td><span id='clickableAwesomeFont'><i class='fas fa-trash fa-lg' name='{{i}}' hx-post='/flask/name/delete' hx-vals='{"delete": "{{i}}"}' hx-target='closest tr' hx-swap='outerHTML swap:1s'></i></span></td>
                       <td><i class='fas fa-ellipsis-v'></i></td>
                   </tr>
                 </form>
@@ -47,7 +47,7 @@
           </table>
         </div>
         <div class='col-6'>
-          <form class="form-inline" hx-post="/name/create" hx-swap="beforebegin" hx-target="#newName" >
+          <form class="form-inline" hx-post="/flask/name/create" hx-swap="beforebegin" hx-target="#newName" >
             <div class="form-group mx-sm-3 mb-2">
               <input type="text" class="form-control" name="create">
             </div>
